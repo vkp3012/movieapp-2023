@@ -5,7 +5,7 @@ const error = (res) => responseWithData(res,500,{
     message:"Oops! Something wrong!"
 });
 
-const badrequest =  (res,message) => responseWithData(res,400{
+const badrequest =  (res,message) => responseWithData(res,400,{
     status: 400,
     message
 });
@@ -14,7 +14,7 @@ const ok = (res,data) => responseWithData(res,200,data);
 
 const created = (res,data) => responseWithData(res,201,data);
 
-const unauthorize = (res) => responseWithData(res,400{
+const unauthorize = (res) => responseWithData(res,400,{
     status : 401,
     message : "unauthorized"
 });
