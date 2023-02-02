@@ -11,7 +11,7 @@ const signup = async (req,res) => {
         const user = new userModel();
         user.displayName = displayname;
         user.username = username;
-        user.password(password);
+        user.setPassword(password)
 
         await user.save();
 
@@ -62,7 +62,7 @@ const updatePassword = async (req,res) => {
         const user = await userModel.findById(req.user.id).select("password id salt");
         if(!user) return responseHandler.unauthorize(res);
         if(!user.validPassword(password)) return responseHandler.badrequest(res,"Wrong password");
-        user.password(newPassword);
+        user.setPassword(newPassword);
         await user.save();
         responseHandler.ok(res);
     } catch  {
