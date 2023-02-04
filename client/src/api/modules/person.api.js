@@ -1,8 +1,8 @@
 import publicClient from "../client/public.client";
 
 const personEndpoints = {
-    detail : ({ personid }) => `person/${personId}`,
-    medias : ({ personid }) => `person/${personId}/medias`
+    detail : ({ personId }) => `person/${personId}`,
+    medias : ({ personId }) => `person/${personId}/medias`
 }
 
 const personApi = {
