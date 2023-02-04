@@ -4,8 +4,8 @@ import { Outlet } from "react-router-dom"
 const MainLayout = () => {
   return (
     <>
-      {/* global loading */}
-      {/* global loading */}
+      {/* global_loading */}
+      {/* global_loading */}
 
       {/* login loading */}
       {/* login loading */}
