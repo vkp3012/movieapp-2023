@@ -14,7 +14,7 @@ const UserMenu = () => {
 
     return (
         <>
-            {user && (
+            {/* {user && ( */}
                 <>
                     <Typography
                         variant="h6"
@@ -54,7 +54,7 @@ const UserMenu = () => {
                         </ListItemButton>
                     </Menu>
                 </>
-            )}
+            {/* )} */}
         </>
     )
 }

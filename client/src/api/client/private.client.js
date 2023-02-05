@@ -1,7 +1,7 @@
 import axios from "axios";
 import querystring from "query-string";
 
-const baseURL = "https://127.0.0.1:5000/app/v1/";
+const baseURL = "https://127.0.0.1:5000";
 
 const privateClient = axios.create({
     baseURL,
@@ -9,6 +9,9 @@ const privateClient = axios.create({
         encode : params => querystring.stringify(params)
     }
 });
+
+console.log('privateClient');
+
 
 privateClient.interceptors.request.use(async config=>{
     return {

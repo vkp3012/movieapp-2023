@@ -4,13 +4,16 @@ import { Outlet } from "react-router-dom"
 import GlobalLoading from "../common/GlobalLoading";
 import Topbar from "../common/Topbar";
 import AuthModel from "../common/AuthModel";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import userApi from "../../api/modules/user.api";
-import {setUser} from "../../redux/features/userSlice"
+import { setListFavorites, setUser} from "../../redux/features/userSlice"
+import favoriteApi from "../../api/modules/favorite.api"
+import { toast } from "react-toastify";
+
 const MainLayout = () => {
     const dispatch = useDispatch();
-    // const { user } = useSelector((state) => state.user)
+    const { user } = useSelector((state) => state.user)
 
     useEffect(()=>{
       const authUser = async () => {
@@ -20,6 +23,18 @@ const MainLayout = () => {
       };
       authUser();
     },[dispatch]);
+
+    useEffect(() => {
+      const getFavorites = async () => {
+        const { response, err } = await favoriteApi.getList();
+  
+        if (response) dispatch(setListFavorites(response));
+        if (err) toast.error(err.message);
+      };
+  
+      if (user) getFavorites();
+      if (!user) dispatch(setListFavorites([]));
+    }, [user, dispatch]);
     
   return (
     <>
