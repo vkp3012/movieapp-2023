@@ -1,7 +1,7 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseURL = "https://moonfix-api.vercel.app/app/v1/";
+const baseURL = "https://127.0.0.1:5000/app/v1/";
 
 const publicClient = axios.create({
     baseURL,

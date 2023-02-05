@@ -7,10 +7,10 @@ import { cloneElement, useState } from "react";
 import { Link } from "react-router-dom";
 import menuConfigs from "../../configs/menu.configs";
 import { themeModels } from "../../configs/theme.configs";
-// import { setAuthModalOpen } from "../../redux/features/authModalSlice";
+import { setAuthModalOpen } from "../../redux/features/authModelSlice";
 import { setThemeMode } from "../../redux/features/themeModalSlice";
 import Logo from "./Logo";
-// import UserMenu from "./UserMenu";
+import UserMenu from "./UserMenu";
 import Sidebar from "./Sidebar";
 
 const ScrollAppBar = ({ children, window }) => {
@@ -31,7 +31,7 @@ const ScrollAppBar = ({ children, window }) => {
 };
 
 const Topbar = () => {
-    // const { user } = useSelector((state) => state.user);
+    const { user } = useSelector((state) => state.user);
     const { appState } = useSelector((state) => state.appState);
     const { themeMode } = useSelector((state) => state.themeMode);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -98,15 +98,18 @@ const Topbar = () => {
 
                     {/* user menu */}
                     <Stack spacing={3} direction="row" alignItems="center">
-                    {/* {!user &&  */}
-                        <Button
-                            variant="contained"
-                            // onClick={() => dispatch(setAuthModalOpen(true))}
-                        >
-                            sign in
-                        </Button>
+                        {!user && 
+                            <Button
+                                variant="contained"
+                                onClick={() => dispatch(setAuthModalOpen(true))}
+                            >
+                                sign in
+                                
+                            </Button>
+                        }
+                        
                     </Stack>
-                    {/* {user && <UserMenu />} */}
+                    { user && <UserMenu/> }
 
                     {/* user menu */}
                 </Toolbar>

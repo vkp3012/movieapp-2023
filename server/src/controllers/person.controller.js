@@ -1,5 +1,5 @@
-import responseHandler from "../handlers/response.handler";
-import tmdbApi from "../tmdb/tmbd.api"
+import responseHandler from "../handlers/response.handler.js";
+import tmdbApi from "../tmdb/tmbd.api.js"
 
 const personDetail = async (req,res) => {
     try {
