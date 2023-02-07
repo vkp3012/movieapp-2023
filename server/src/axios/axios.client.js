@@ -7,7 +7,8 @@ const get = async (url) => {
             "Accept-Encoding": "identity"
         }
     });
+
     return response.data;
 }
 
-export default {get}
+export default { get }
