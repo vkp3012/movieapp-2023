@@ -1,72 +1,55 @@
-import { Box, Modal } from "@mui/material"
+import { Box, Modal } from "@mui/material";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { setAuthModalOpen } from "../../redux/features/authModelSlice";
-import { useDispatch, useSelector} from "react-redux"
 import Logo from "./Logo";
 import SigninForm from "./SigninForm";
 import SignupForm from "./SignupForm";
-import { useEffect, useState } from "react";
 
 const actionState = {
-    signin : "signin",
-    signup : "signup"
+  signin: "signin",
+  signup: "signup"
 };
 
-const AuthModel = () => {
-    const { authModalOpen } = useSelector((state) => state.authModel)
-    const dispatch = useDispatch();
-    const [ action,setAction ] = useState(actionState.signin);
+const AuthModal = () => {
+  const { authModalOpen } = useSelector((state) => state.authModal);
 
-    useEffect(()=> {
-        if (authModalOpen) setAction(actionState.signin);
-    },[authModalOpen]);
+  const dispatch = useDispatch();
 
-    const handleClose = () => dispatch(setAuthModalOpen(false));
-    const switchAuthState = (state) => setAction(state);
+  const [action, setAction] = useState(actionState.signin);
 
-    return (
-        <Modal open={authModalOpen} onClose={handleClose}>
-            <Box sx = {{
-                position : "absolute",
-                top : "50%",
-                left : "50%",
-                transform : "translate(-50% -50%)",
-                width : "100%",
-                maxWidth : "600px",
-                padding : 4,
-                outline : "none"
-            }}
-            >
-                <Box sx = {{
-                    padding : 4,
-                    boxShadow: 24,
-                    backgroundColor : "background.paper"
-                }}
-                >
-                    <Box sx = {{
-                        textAlign: "center",
-                        marginBottom : "2rem"
-                    }}>
-                        <Logo />
-                    </Box>
+  useEffect(() => {
+    if (authModalOpen) setAction(actionState.signin);
+  }, [authModalOpen]);
 
-                    { 
-                        action === actionState.signin && 
-                        < SigninForm switchAuthState = {() => 
-                            switchAuthState(actionState.signup)            
-                        } />
-                    }
+  const handleClose = () => dispatch(setAuthModalOpen(false));
 
-                    {
-                        action === actionState.signup &&
-                        <SignupForm switchAuthState = {() => 
-                            switchAuthState(actionState.signin)
-                        }
-                        />
-                    }
-                </Box>
-            </Box>
-        </Modal>
-    )
-}
+  const switchAuthState = (state) => setAction(state);
 
-export default AuthModel
+  return (
+    <Modal open={authModalOpen} onClose={handleClose}>
+      <Box sx={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "100%",
+        maxWidth: "600px",
+        padding: 4,
+        outline: "none"
+      }}>
+        <Box sx={{ padding: 4, boxShadow: 24, backgroundColor: "background.paper" }}>
+          <Box sx={{ textAlign: "center", marginBottom: "2rem" }}>
+            <Logo />
+          </Box>
+
+          {action === actionState.signin && <SigninForm switchAuthState={() => switchAuthState(actionState.signup)} />}
+
+          {action === actionState.signup && <SignupForm switchAuthState={() => switchAuthState(actionState.signin)} />}
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
+
+export default AuthModal;

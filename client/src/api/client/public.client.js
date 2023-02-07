@@ -1,30 +1,29 @@
 import axios from "axios";
 import queryString from "query-string";
 
-const baseURL = "https://127.0.0.1:5000/app/v1/";
+const baseURL = "http://127.0.0.1:5000/api/v1/";
 
 const publicClient = axios.create({
     baseURL,
-    paramsSerializer : {
-        encode : params => queryString.stringify(params)
+    paramsSerializer: {
+        encode: params => queryString.stringify(params)
     }
 });
 
 publicClient.interceptors.request.use(async config => {
     return {
         ...config,
-        header : {
-            "Content-Type":"application/json"
+        headers: {
+        "Content-Type": "application/json"
         }
     };
 });
 
 publicClient.interceptors.response.use((response) => {
-    if(response && response.data) return response.data;
+    if (response && response.data) return response.data;
     return response;
-},(err)=>{
-    throw err.response.data;
-})
+    }, (err) => {
+        throw err.response.data;
+});
 
 export default publicClient;
-
