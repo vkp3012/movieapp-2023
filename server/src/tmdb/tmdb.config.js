@@ -3,6 +3,8 @@ const key = process.env.TMDB_URL;
 
 const getUrl = (endpoint, params) => {
     const qs = new URLSearchParams(params);
+    console.log(qs);
+    
     return `${baseUrl}${endpoint}?api_key=${key}&${qs}`;
 };
 
