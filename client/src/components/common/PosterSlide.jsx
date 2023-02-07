@@ -12,6 +12,8 @@ const PosterSlide = ({ posters }) => {
                     paddingTop: "160%",
                     backgroundPosition: "center",
                     backgroundSize: "cover",
+                    gap: 1,
+                    margin:1,
                     backgroundImage: `url(${tmdbConfigs.posterPath(item.file_path)})`
                 }} />
                 </SwiperSlide>

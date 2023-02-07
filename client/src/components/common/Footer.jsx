@@ -29,7 +29,16 @@ const Footer = () => {
             ))}
           </Box>
         </Stack>
+        <Stack
+          alignItems="center"
+          justifyContent="center"
+          direction={{ xs: "column", md: "row " }}
+          sx={{ height: "max-content" }}
+        >
+          This is copy Right @22-2023 || Movie
+        </Stack>
       </Paper>
+      
     </Container>
   );
 };
